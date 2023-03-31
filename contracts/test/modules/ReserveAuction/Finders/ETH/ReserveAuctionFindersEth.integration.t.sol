@@ -108,7 +108,7 @@ contract ReserveAuctionFindersEthIntegrationTest is DSTest {
 
     function runETH() public {
         vm.prank(address(seller));
-        auctions.createAuction(address(token), 0, 1 days, 0.1 ether, address(sellerFundsRecipient), 0, 1000);
+        auctions.createAuction(address(token), 0, 1 days, 0.1 ether, address(sellerFundsRecipient), 0, 1000, 1);
 
         vm.warp(1 hours);
         vm.prank(address(bidder));
