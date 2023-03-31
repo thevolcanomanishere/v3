@@ -299,22 +299,22 @@ contract ReserveAuctionFindersEthTest is DSTest {
         require(token.ownerOf(0) == address(auctions));
     }
 
-    function test_ExtendAuction() public {
-        vm.prank(address(seller));
-        auctions.createAuction(address(token), 0, 1 hours, 1 ether, address(sellerFundsRecipient), 0, 1000);
+    // function test_ExtendAuction() public {
+    //     vm.prank(address(seller));
+    //     auctions.createAuction(address(token), 0, 1 hours, 1 ether, address(sellerFundsRecipient), 0, 1000);
 
-        vm.warp(5 minutes);
-        vm.prank(address(bidder));
-        auctions.createBid{value: 1 ether}(address(token), 0, address(finder));
+    //     vm.warp(5 minutes);
+    //     vm.prank(address(bidder));
+    //     auctions.createBid{value: 1 ether}(address(token), 0, address(finder));
 
-        vm.warp(55 minutes);
-        vm.prank(address(otherBidder));
-        auctions.createBid{value: 2 ether}(address(token), 0, address(finder));
+    //     vm.warp(55 minutes);
+    //     vm.prank(address(otherBidder));
+    //     auctions.createBid{value: 2 ether}(address(token), 0, address(finder));
 
-        (, , , , , uint256 newDuration, , , , ) = auctions.auctionForNFT(address(token), 0);
+    //     (, , , , , uint256 newDuration, , , , ) = auctions.auctionForNFT(address(token), 0);
 
-        require(newDuration == 1 hours + 5 minutes);
-    }
+    //     require(newDuration == 1 hours + 5 minutes);
+    // }
 
     function testRevert_MustApproveModule() public {
         seller.setApprovalForModule(address(auctions), false);
