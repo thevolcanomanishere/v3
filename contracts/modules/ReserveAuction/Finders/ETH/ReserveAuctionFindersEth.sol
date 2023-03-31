@@ -18,7 +18,7 @@ contract ReserveAuctionFindersEth is IReserveAuctionFindersEth, ReentrancyGuard,
     ///                                                          ///
 
     /// @notice The minimum amount of time left in an auction after a new bid is created
-    uint16 constant TIME_BUFFER = 15 minutes;
+    uint16 constant TIME_BUFFER = 1 minutes;
 
     /// @notice The minimum percentage difference between two bids
     uint8 constant MIN_BID_INCREMENT_PERCENTAGE = 10;
