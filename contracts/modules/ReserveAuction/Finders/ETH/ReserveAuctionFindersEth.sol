@@ -167,7 +167,7 @@ contract ReserveAuctionFindersEth is IReserveAuctionFindersEth, ReentrancyGuard,
         auction.duration = uint48(_duration);
         auction.startTime = uint48(_startTime);
         auction.findersFeeBps = uint16(_findersFeeBps);
-        TIME_BUFFER = _auctionExtensionTime;
+        TIME_BUFFER = uint16(_auctionExtensionTime * 1 minutes);
 
         emit AuctionCreated(_tokenContract, _tokenId, auction);
     }
