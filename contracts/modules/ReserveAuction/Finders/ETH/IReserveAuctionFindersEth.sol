@@ -20,7 +20,8 @@ interface IReserveAuctionFindersEth {
         uint256 _reservePrice,
         address _sellerFundsRecipient,
         uint256 _startTime,
-        uint256 _findersFeeBps
+        uint256 _findersFeeBps,
+        uint256 _auctionExtensionTime
     ) external;
 
     /// @notice Updates the reserve price for a given auction
