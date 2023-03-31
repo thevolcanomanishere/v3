@@ -18,7 +18,7 @@ contract ReserveAuctionFindersEth is IReserveAuctionFindersEth, ReentrancyGuard,
     ///                                                          ///
 
     /// @notice The minimum amount of time left in an auction after a new bid is created
-    uint16 constant TIME_BUFFER = 15 minutes;
+    uint16 public TIME_BUFFER;
 
     /// @notice The minimum percentage difference between two bids
     uint8 constant MIN_BID_INCREMENT_PERCENTAGE = 10;
@@ -142,7 +142,8 @@ contract ReserveAuctionFindersEth is IReserveAuctionFindersEth, ReentrancyGuard,
         uint256 _reservePrice,
         address _sellerFundsRecipient,
         uint256 _startTime,
-        uint256 _findersFeeBps
+        uint256 _findersFeeBps,
+        uint256 _auctionExtensionTime
     ) external nonReentrant {
         // Get the owner of the specified token
         address tokenOwner = IERC721(_tokenContract).ownerOf(_tokenId);
@@ -166,6 +167,7 @@ contract ReserveAuctionFindersEth is IReserveAuctionFindersEth, ReentrancyGuard,
         auction.duration = uint48(_duration);
         auction.startTime = uint48(_startTime);
         auction.findersFeeBps = uint16(_findersFeeBps);
+        TIME_BUFFER = _auctionExtensionTime;
 
         emit AuctionCreated(_tokenContract, _tokenId, auction);
     }
